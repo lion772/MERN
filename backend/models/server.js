@@ -9,7 +9,7 @@ class Server {
         this.port = process.env.PORT || 5000; // Loaded from .env file ->
         this.paths = {
             auth: "/api/auth",
-            homepage: "/api/homepage",
+            users: "/api/users",
         };
 
         this.middlewares();
@@ -41,6 +41,7 @@ class Server {
 
     // Bind controllers to routes
     routes() {
+        this.app.use(this.paths.users, require("../routes/users"));
         /* this.app.use(this.paths.auth, require("../routes/auth"));
         this.app.use(this.paths.homepage, require("../routes/homepage")); */
 
