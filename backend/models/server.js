@@ -6,7 +6,7 @@ const path = require("path");
 class Server {
     constructor() {
         this.app = express();
-        this.port = 5000; // Loaded from .env file -> process.env.PORT
+        this.port = process.env.PORT || 5000; // Loaded from .env file ->
         this.paths = {
             auth: "/api/auth",
             homepage: "/api/homepage",
@@ -20,6 +20,9 @@ class Server {
         this.app.use(cors()); // Enable CORS
 
         this.app.use(bodyParser.json());
+
+        // Pick up React index.html file
+        this.app.use(express.static(path.join(__dirname, "../../build")));
 
         // CORS Headers => Required for cross-origin/ cross-server communication
         this.app.use((req, res, next) => {
@@ -38,8 +41,8 @@ class Server {
 
     // Bind controllers to routes
     routes() {
-        this.app.use(this.paths.auth, require("../routes/auth"));
-        this.app.use(this.paths.homepage, require("../routes/homepage"));
+        /* this.app.use(this.paths.auth, require("../routes/auth"));
+        this.app.use(this.paths.homepage, require("../routes/homepage")); */
 
         // Catch all requests that don't match any route
         this.app.get("*", (req, res) => {
