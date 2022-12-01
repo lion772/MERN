@@ -10,6 +10,7 @@ class Server {
         this.paths = {
             auth: "/api/auth",
             users: "/api/users",
+            places: "/api/places",
         };
 
         this.middlewares();
@@ -42,6 +43,7 @@ class Server {
     // Bind controllers to routes
     routes() {
         this.app.use(this.paths.users, require("../routes/users"));
+        this.app.use(this.paths.places, require("../routes/places"));
         /* this.app.use(this.paths.auth, require("../routes/auth"));
         this.app.use(this.paths.homepage, require("../routes/homepage")); */
 
