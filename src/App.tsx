@@ -9,12 +9,10 @@ export default function App() {
     return (
         <>
             <Switch>
-                <Route path={"/places/new"} component={NewPlacePage} />
-                <Route path={"/users"} exact component={UsersPage} />
+                <Route path={"/"} exact component={UsersPage} />
                 <Route path={"/users/:uid"} component={UserPage} />
-                <Route path={"*"}>
-                    <Redirect to={"/users"} />
-                </Route>
+                <Route path={"/places/new"} component={NewPlacePage} />
+                <Redirect to={"/"} />
             </Switch>
         </>
     );
