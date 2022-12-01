@@ -1,10 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import styles from "./SideDrawer.module.css";
 
-interface SideDrawerProps {}
-
-const SideDrawer: FC<SideDrawerProps> = () => {
-    const content = <p>SideDrawer</p>;
+const SideDrawer: FC<PropsWithChildren> = ({ children }) => {
+    const content = <aside className={styles["side-drawer"]}>{children}</aside>;
 
     return content;
 };
