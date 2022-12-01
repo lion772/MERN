@@ -21,7 +21,7 @@ const UsersList: FC<UsersListProps> = ({ items }) => {
             </ul>
         );
     }
-    return <div className={styles.UsersList}>{content}</div>;
+    return <div className="users-list">{content}</div>;
 };
 
 export default UsersList;
