@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, useRef } from "react";
 import { createPortal } from "react-dom";
 import styles from "./SideDrawer.module.css";
 import { CSSTransition } from "react-transition-group";
@@ -13,15 +13,22 @@ const SideDrawer: FC<PropsWithChildren<SideDrawerProps>> = ({
     onClose,
     show,
 }) => {
+    const nodeRef = useRef(null);
+
     const content = (
         <CSSTransition
+            nodeRef={nodeRef}
             in={show}
             timeout={200}
             classNames="slide-in-left"
             mountOnEnter
             unmountOnExit
         >
-            <aside className={styles["side-drawer"]} onClick={onClose}>
+            <aside
+                ref={nodeRef}
+                className={styles["side-drawer"]}
+                onClick={onClose}
+            >
                 {children}
             </aside>
         </CSSTransition>
