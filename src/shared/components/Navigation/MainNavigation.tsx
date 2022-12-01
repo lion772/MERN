@@ -10,14 +10,14 @@ const MainNavigation: FC<PropsWithChildren> = (props) => {
     return (
         <MainHeader>
             <button
-                className="main-navigation__menu-btn"
+                className={styles["main-navigation__menu-btn"]}
                 onClick={openDrawerHandler}
             >
                 <span />
                 <span />
                 <span />
             </button>
-            <h1 className="main-navigation__title">
+            <h1 className={styles["main-navigation__title"]}>
                 <Link to="/">YourPlaces</Link>
             </h1>
             <nav>...</nav>

@@ -4,16 +4,20 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import UsersPage from "./user/pages/UsersPage";
 import UserPage from "./user/pages/UserPage";
 import NewPlacePage from "./places/pages/NewPlacePage";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
 export default function App() {
     return (
         <>
-            <Switch>
-                <Route path={"/"} exact component={UsersPage} />
-                <Route path={"/users/:uid"} component={UserPage} />
-                <Route path={"/places/new"} component={NewPlacePage} />
-                <Redirect to={"/"} />
-            </Switch>
+            <MainNavigation />
+            <main>
+                <Switch>
+                    <Route path={"/"} exact component={UsersPage} />
+                    <Route path={"/:uid"} component={UserPage} />
+                    <Route path={"/places/new"} component={NewPlacePage} />
+                    <Redirect to={"/"} />
+                </Switch>
+            </main>
         </>
     );
 }
