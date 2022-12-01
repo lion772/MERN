@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren, useState } from "react";
 import { Link } from "react-router-dom";
+import Backdrop from "../UIElements/Backdrop";
 import MainHeader from "./MainHeader";
 
 import styles from "./MainNavigation.module.css";
@@ -20,11 +21,13 @@ const MainNavigation: FC<PropsWithChildren> = (props) => {
 
     return (
         <>
-            <SideDrawer>
+            {drawerIsOpen && <Backdrop onClose={closeDrawerHandler} />}
+            <SideDrawer show={drawerIsOpen} onClose={closeDrawerHandler}>
                 <nav className={styles["main-navigation__drawer-nav"]}>
                     <NavLinks />
                 </nav>
             </SideDrawer>
+
             <MainHeader>
                 <button
                     className={styles["main-navigation__menu-btn"]}
