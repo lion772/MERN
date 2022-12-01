@@ -13,8 +13,9 @@ export default function App() {
             <main>
                 <Switch>
                     <Route path={"/"} exact component={UsersPage} />
-                    <Route path={"/:uid"} component={UserPage} />
+                    <Route path={"/:uid/places"} component={UserPage} />
                     <Route path={"/places/new"} component={NewPlacePage} />
+                    <Route path="/places/:placeId" />
                     <Redirect to={"/"} />
                 </Switch>
             </main>
