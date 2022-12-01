@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Card from "../../shared/components/UIElements/Card";
 import { User } from "../pages/UsersPage";
 import UserItem from "./UserItem";
 import styles from "./UsersList.module.css";
@@ -9,11 +10,13 @@ interface UsersListProps {
 
 const UsersList: FC<UsersListProps> = ({ items }) => {
     let content = (
-        <ul>
-            {items.map((item) => (
-                <UserItem key={item.id} {...item} />
-            ))}
-        </ul>
+        <>
+            <ul>
+                {items.map((item) => (
+                    <UserItem key={item.id} {...item} />
+                ))}
+            </ul>
+        </>
     );
 
     return <div className={styles["users-list"]}>{content}</div>;

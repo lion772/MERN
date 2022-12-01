@@ -1,13 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import UsersPage from "./UsersPage";
 import "@testing-library/jest-dom";
+import { act } from "react-dom/test-utils";
+import { unmountComponentAtNode } from "react-dom";
 
 describe("UsersPage", () => {
-    test("renders users request finished", async () => {
+    it("renders users request finished", async () => {
         //Arrange
         window.fetch = jest.fn();
 
-        (window.fetch as unknown as jest.Mock).mockResolvedValueOnce({
+        await (window.fetch as unknown as jest.Mock).mockResolvedValueOnce({
             json: async () => [
                 {
                     id: "u1",
@@ -17,20 +19,32 @@ describe("UsersPage", () => {
                 },
             ],
         });
+
         render(<UsersPage />);
 
         //Assert
+
         const emptyElement = screen.queryByTitle("empty");
         expect(emptyElement).toBeInTheDocument();
 
-        const finishedElement = screen.queryByTitle("finished", {
-            exact: true,
-        });
+        const finishedElement = screen.queryByRole("div");
         expect(finishedElement).not.toBeInTheDocument();
 
-        /* const asyncFinishedElement = await screen.findByTitle("finished", {
-            exact: true,
-        });
+        /* const asyncFinishedElement = await screen.findByRole("div");
         expect(asyncFinishedElement).toBeInTheDocument(); */
     });
 });
+
+/* let container: any = null;
+    beforeEach(() => {
+        // setup a DOM element as a render target
+        container = document.createElement("div");
+        document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+        // cleanup on exiting
+        unmountComponentAtNode(container);
+        container.remove();
+        container = null;
+    }); */

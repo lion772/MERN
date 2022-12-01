@@ -10,6 +10,7 @@ export type User = {
 
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
+
     const fetchUsers = async () => {
         const { data: Users } = await (
             await fetch("http://localhost:5000/api/users")
@@ -28,7 +29,7 @@ export default function UsersPage() {
                 </p>
             )}
             {users.length > 0 && (
-                <div title="finished">
+                <div>
                     <UsersList items={users} />
                 </div>
             )}
