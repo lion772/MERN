@@ -23,7 +23,9 @@ export default function UsersPage() {
     return (
         <>
             {users.length === 0 && (
-                <p title="empty">There's no list to retrieve</p>
+                <p title="empty" className="center">
+                    No users yet. Don't you want to add one?
+                </p>
             )}
             {users.length > 0 && (
                 <div title="finished">

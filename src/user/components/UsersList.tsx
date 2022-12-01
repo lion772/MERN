@@ -9,19 +9,14 @@ interface UsersListProps {
 
 const UsersList: FC<UsersListProps> = ({ items }) => {
     let content = (
-        <div className="center">No users yet. Don't you want to add one?</div>
+        <ul>
+            {items.map((item) => (
+                <UserItem key={item.id} {...item} />
+            ))}
+        </ul>
     );
 
-    if (items.length > 0) {
-        content = (
-            <ul>
-                {items.map((item) => (
-                    <UserItem key={item.id} item={item} />
-                ))}
-            </ul>
-        );
-    }
-    return <div className="users-list">{content}</div>;
+    return <div className={styles["users-list"]}>{content}</div>;
 };
 
 export default UsersList;

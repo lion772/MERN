@@ -18,7 +18,7 @@ const users = [
 
 router.get("/", (req, res) => {
     console.log("************************");
-    console.log("on the server!");
+    console.log("Get Users");
     console.log("************************");
 
     //Get from MongoDB

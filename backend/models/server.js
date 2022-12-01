@@ -46,10 +46,10 @@ class Server {
         this.app.use(this.paths.homepage, require("../routes/homepage")); */
 
         // Catch all requests that don't match any route
-        this.app.get("*", (req, res) => {
+        /* this.app.get("*", (req, res) => {
             console.log("here");
             res.sendFile(path.join(__dirname, "../../build/index.html"));
-        });
+        }); */
     }
 
     listen() {
