@@ -3,11 +3,10 @@ import { Place } from "../pages/UserPlacesPage";
 import styles from "./PlacesList.module.css";
 
 interface PlacesListProps {
-    userId: string;
     place: Place;
 }
 
-const PlacesList: FC<PlacesListProps> = ({ userId, place }) => {
+const PlacesList: FC<PlacesListProps> = ({ place }) => {
     return (
         <div className={styles.PlacesList}>
             <div>

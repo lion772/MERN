@@ -30,12 +30,20 @@ const places = [
     },
 ];
 
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
     console.log("************************");
     console.log("Get Places");
     console.log("************************");
+    const { uid } = req.body;
+
     //todo: get places from mongoDB
-    res.status(201).json({ message: "Placed retrieved!", places });
+
+    const placesBasedOnUid = places.filter((place) => place.creator === uid);
+
+    res.status(201).json({
+        message: "Placed retrieved!",
+        places: placesBasedOnUid,
+    });
 });
 
 module.exports = router;

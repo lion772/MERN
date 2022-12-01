@@ -17,12 +17,17 @@ export type Place = {
 
 export default function UserPlacesPage() {
     const [placesList, setPlacesList] = useState<Place[]>([]);
-    const { uid } = useParams<any>();
+    const param = useParams<any>();
 
     const fetchPlaces = async () => {
         const { places } = await (
-            await fetch("http://localhost:5000/api/places")
+            await fetch("http://localhost:5000/api/places", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(param),
+            })
         ).json();
+        console.log(places);
         setPlacesList(places);
     };
     useEffect(() => {
@@ -33,7 +38,7 @@ export default function UserPlacesPage() {
         <>
             {placesList.length > 0 &&
                 placesList.map((place) => (
-                    <PlacesList key={place.id} userId={uid} place={place} />
+                    <PlacesList key={place.id} place={place} />
                 ))}
         </>
     );
