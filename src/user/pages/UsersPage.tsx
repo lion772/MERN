@@ -22,7 +22,14 @@ export default function UsersPage() {
 
     return (
         <>
-            <UsersList items={users} />
+            {users.length === 0 && (
+                <p title="empty">There's no list to retrieve</p>
+            )}
+            {users.length > 0 && (
+                <div title="finished">
+                    <UsersList items={users} />
+                </div>
+            )}
         </>
     );
 }
