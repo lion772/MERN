@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import UsersList from "../components/UsersList";
 
 export type User = {
@@ -11,15 +11,15 @@ export type User = {
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
 
-    const fetchUsers = async () => {
+    const fetchUsers = useCallback(async () => {
         const { data: Users } = await (
             await fetch("http://localhost:5000/api/users")
         ).json();
         setUsers(Users);
-    };
+    }, []);
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [fetchUsers]);
 
     return (
         <>

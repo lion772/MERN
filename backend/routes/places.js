@@ -39,9 +39,8 @@ router.post("/", (req, res) => {
     //todo: get places from mongoDB
 
     const placesBasedOnUid = places.filter((place) => place.creator === uid);
-
     res.status(201).json({
-        message: "Placed retrieved!",
+        message: "Place retrieved!",
         places: placesBasedOnUid,
     });
 });

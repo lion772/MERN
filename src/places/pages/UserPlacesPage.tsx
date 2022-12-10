@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PlacesList from "../components/PlacesList";
 
@@ -19,7 +19,7 @@ export default function UserPlacesPage() {
     const [placesList, setPlacesList] = useState<Place[]>([]);
     const param = useParams<any>();
 
-    const fetchPlaces = async () => {
+    const fetchPlaces = useCallback(async () => {
         const { places } = await (
             await fetch("http://localhost:5000/api/places", {
                 method: "POST",
@@ -27,19 +27,19 @@ export default function UserPlacesPage() {
                 body: JSON.stringify(param),
             })
         ).json();
-        console.log(places);
         setPlacesList(places);
-    };
+    }, [param]);
     useEffect(() => {
         fetchPlaces();
-    }, []);
+    }, [fetchPlaces]);
 
-    return (
-        <>
-            {placesList.length > 0 &&
-                placesList.map((place) => (
-                    <PlacesList key={place.id} place={place} />
-                ))}
-        </>
-    );
+    if (placesList.length === 0) {
+        return (
+            <h3 className="center">
+                No list to display. Don't you want to create a place?
+            </h3>
+        );
+    }
+
+    return <>{placesList.length > 0 && <PlacesList items={placesList} />}</>;
 }

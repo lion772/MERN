@@ -27,7 +27,6 @@ const MainNavigation: FC<PropsWithChildren> = (props) => {
                     <NavLinks />
                 </nav>
             </SideDrawer>
-
             <MainHeader>
                 <button
                     className={styles["main-navigation__menu-btn"]}
