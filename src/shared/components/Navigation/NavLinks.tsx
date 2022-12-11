@@ -22,7 +22,7 @@ const NavLinks: FC<NavLinksProps> = () => {
             </li>
             <li>
                 <NavLink
-                    to="/u1/places"
+                    to="/639620c5842324dfdaa37c54/places"
                     className={(isActive) => (isActive ? styles["active"] : "")}
                 >
                     MY PLACES
