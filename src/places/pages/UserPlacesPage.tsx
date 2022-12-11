@@ -18,6 +18,7 @@ export type Place = {
 
 export default function UserPlacesPage() {
     const [placesList, setPlacesList] = useState<Place[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const param = useParams<any>();
 
     const fetchPlaces = useCallback(async () => {
@@ -28,6 +29,7 @@ export default function UserPlacesPage() {
                 body: JSON.stringify(param),
             })
         ).json();
+        setIsLoading(false);
 
         setPlacesList(places);
     }, [param]);
@@ -36,7 +38,7 @@ export default function UserPlacesPage() {
         fetchPlaces();
     }, [fetchPlaces]);
 
-    if (placesList.length === 0) {
+    if (!isLoading && placesList.length === 0) {
         return (
             <div className="center">
                 <Card>
