@@ -13,7 +13,7 @@ const places = [
             lat: 40.7484405,
             lng: -73.9878584,
         },
-        creator: "u1",
+        creator: "639620c5842324dfdaa37c54",
     },
     {
         id: "p2",
@@ -26,7 +26,7 @@ const places = [
             lat: 40.7484405,
             lng: -73.9878584,
         },
-        creator: "u2",
+        creator: "639621aca2327315be67daa8",
     },
 ];
 
