@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Button from "../../shared/components/UIElements/Button/Button";
 import Card from "../../shared/components/UIElements/Card";
 import { Place } from "../pages/UserPlacesPage";
 import styles from "./PlaceItem.module.css";
@@ -22,9 +23,9 @@ const PlaceItem: FC<PlaceItemProps> = ({ place }) => {
                         Lat: {place.location.lat} LONG: {place.location.lng}
                     </p>
                     <div className={styles["place-item__actions"]}>
-                        <button>View on map</button>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <Button>View on map</Button>
+                        <Button>Edit</Button>
+                        <Button>Delete</Button>
                     </div>
                 </div>
             </Card>
