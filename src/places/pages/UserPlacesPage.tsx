@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Card from "../../shared/components/UIElements/Card";
 import PlacesList from "../components/PlacesList";
 
 export type Place = {
@@ -27,17 +28,24 @@ export default function UserPlacesPage() {
                 body: JSON.stringify(param),
             })
         ).json();
+
         setPlacesList(places);
     }, [param]);
+
     useEffect(() => {
         fetchPlaces();
     }, [fetchPlaces]);
 
     if (placesList.length === 0) {
         return (
-            <h3 className="center">
-                No list to display. Don't you want to create a place?
-            </h3>
+            <div className="center">
+                <Card>
+                    <h2>
+                        No list to display. Don't you want to create a place?
+                    </h2>
+                    <button>Share Place</button>
+                </Card>
+            </div>
         );
     }
 

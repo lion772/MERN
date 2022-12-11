@@ -9,12 +9,13 @@ interface PlacesListProps {
 
 const PlacesList: FC<PlacesListProps> = ({ items }) => {
     const itemsDisplay = (
-        <ul>
-            {items.map((place) => (
+        <div className={styles["place-list"]}>
+            {items.map((place: Place) => (
                 <PlaceItem key={place.id} place={place} />
             ))}
-        </ul>
+        </div>
     );
+
     return <div className="center">{itemsDisplay}</div>;
 };
 

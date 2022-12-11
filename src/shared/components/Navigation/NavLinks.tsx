@@ -5,23 +5,46 @@ import styles from "./NavLinks.module.css";
 interface NavLinksProps {}
 
 const NavLinks: FC<NavLinksProps> = () => {
+    /*  const navLinkStyles = ({ isActive: string }) => {
+        return {};
+    };
+ */
     return (
         <ul className={styles["nav-links"]}>
             <li>
-                <NavLink to="/" exact>
+                <NavLink
+                    to="/"
+                    className={(isActive) => (isActive ? styles["active"] : "")}
+                    exact
+                >
                     ALL USERS
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/u1/places">MY PLACES</NavLink>
+                <NavLink
+                    to="/u1/places"
+                    className={(isActive) => (isActive ? styles["active"] : "")}
+                >
+                    MY PLACES
+                </NavLink>
             </li>
 
             <li>
-                <NavLink to="/places/new">ADD PLACE</NavLink>
+                <NavLink
+                    to="/places/new"
+                    className={(isActive) => (isActive ? styles["active"] : "")}
+                >
+                    ADD PLACE
+                </NavLink>
             </li>
 
             <li>
-                <NavLink to="/auth">AUTHENTICATE</NavLink>
+                <NavLink
+                    to="/auth"
+                    className={(isActive) => (isActive ? styles["active"] : "")}
+                >
+                    AUTHENTICATE
+                </NavLink>
             </li>
             <li>
                 <button>Log in</button>
