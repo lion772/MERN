@@ -1,9 +1,21 @@
-import React from "react";
+import React, { FC, MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 import "./Button.css";
 
-const Button = (props) => {
+interface ButtonProps {
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+    children?: ReactNode | undefined;
+    href?: string | undefined;
+    inverse?: boolean | undefined;
+    size?: string | undefined;
+    danger?: boolean | undefined;
+    to?: string | undefined;
+    type?: "button" | "submit" | "reset" | undefined;
+    disabled?: boolean | undefined;
+}
+
+const Button: FC<ButtonProps> = (props) => {
     if (props.href) {
         return (
             <a
@@ -20,7 +32,6 @@ const Button = (props) => {
         return (
             <Link
                 to={props.to}
-                exact={props.exact}
                 className={`button button--${props.size || "default"} ${
                     props.inverse && "button--inverse"
                 } ${props.danger && "button--danger"}`}

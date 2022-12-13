@@ -23,9 +23,9 @@ const PlaceItem: FC<PlaceItemProps> = ({ place }) => {
                         Lat: {place.location.lat} LONG: {place.location.lng}
                     </p>
                     <div className={styles["place-item__actions"]}>
-                        <Button>View on map</Button>
-                        <Button>Edit</Button>
-                        <Button>Delete</Button>
+                        <Button inverse>View on map</Button>
+                        <Button to={`/places/${place.id}`}>Edit</Button>
+                        <Button danger>Delete</Button>
                     </div>
                 </div>
             </Card>
