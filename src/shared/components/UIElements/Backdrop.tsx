@@ -7,9 +7,9 @@ interface BackdropProps {
     onClose: () => void;
 }
 
-const Backdrop: FC<BackdropProps> = (props) => {
+const Backdrop: FC<BackdropProps> = ({ onClose }) => {
     return createPortal(
-        <aside className={styles["backdrop"]} onClick={props.onClose}></aside>,
+        <aside className={styles["backdrop"]} onClick={onClose}></aside>,
         document.getElementById("backdrop-hook") as Element
     );
 };

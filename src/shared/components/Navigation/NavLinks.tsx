@@ -5,10 +5,6 @@ import styles from "./NavLinks.module.css";
 interface NavLinksProps {}
 
 const NavLinks: FC<NavLinksProps> = () => {
-    /*  const navLinkStyles = ({ isActive: string }) => {
-        return {};
-    };
- */
     return (
         <ul className={styles["nav-links"]}>
             <li>
