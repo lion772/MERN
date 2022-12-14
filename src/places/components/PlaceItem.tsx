@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import Button from "../../shared/components/UIElements/Button/Button";
 import Card from "../../shared/components/UIElements/Card";
 import Modal from "../../shared/components/UIElements/Modal/Modal";
+import Map from "../../shared/components/UIElements/Map/Map";
 import { Place } from "../pages/UserPlacesPage";
 import styles from "./PlaceItem.module.css";
 import GOOGLE_APP_SECRET_ID from "../../secrets.json";
@@ -26,26 +27,8 @@ const PlaceItem: FC<PlaceItemProps> = ({ place }) => {
                 footerClass="place-item__modal-actions"
                 footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
             >
-                {/* <div className="map-container">
-                    <Map center={place.location} zoom={16} />
-                </div> */}
-                <div className="map-container">
-                    <iframe
-                        title="map"
-                        width="100%"
-                        height="100%"
-                        src={
-                            "https://maps.google.com/maps?q=" +
-                            place.location.lat.toString() +
-                            "," +
-                            place.location.lng.toString() +
-                            "&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        }
-                    />
-                    <script
-                        type="text/javascript"
-                        src={`https://embedmaps.com/google-maps-authorization/script.js?id=${GOOGLE_APP_SECRET_ID}`}
-                    ></script>
+                <div className={styles["map-container"]}>
+                    <Map center={place.location} zoom={14} />
                 </div>
             </Modal>
             <div className={`${styles["place-item"]}`}>
