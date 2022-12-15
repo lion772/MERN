@@ -5,7 +5,6 @@ import Modal from "../../shared/components/UIElements/Modal/Modal";
 import Map from "../../shared/components/UIElements/Map/Map";
 import { Place } from "../pages/UserPlacesPage";
 import styles from "./PlaceItem.module.css";
-import GOOGLE_APP_SECRET_ID from "../../secrets.json";
 
 interface PlaceItemProps {
     place: Place;
@@ -28,7 +27,7 @@ const PlaceItem: FC<PlaceItemProps> = ({ place }) => {
                 footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
             >
                 <div className={styles["map-container"]}>
-                    <Map center={place.location} zoom={14} />
+                    <Map center={place.location} zoom={16} />
                 </div>
             </Modal>
             <div className={`${styles["place-item"]}`}>
