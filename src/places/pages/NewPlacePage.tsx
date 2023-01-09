@@ -1,4 +1,5 @@
 import React from "react";
+import Input from "../../shared/components/FormElements/Input/Input";
 import styles from "./NewPlacePage.module.css";
 
 export default function NewPlacePage() {
@@ -8,23 +9,32 @@ export default function NewPlacePage() {
     return (
         <form className={styles["place-form"]} onSubmit={onSubmitHandler}>
             <>
-                <input
+                <Input
                     type="text"
                     id="title"
-                    name="title"
+                    label="title"
+                    element="input"
                     placeholder="Title"
+                    validators={true}
+                    errorText="Please enter a valid title."
                 />
-                <input
+                <Input
                     type="text"
                     id="description"
-                    name="description"
+                    label="description"
                     placeholder="Description"
+                    validators={false}
+                    errorText="Please enter a valid description."
                 />
-                <input
+
+                <Input
                     type="text"
                     id="address"
-                    name="address"
+                    label="address"
+                    element="input"
                     placeholder="Address"
+                    validators={true}
+                    errorText="Please enter a valid address."
                 />
             </>
             <button type="submit">Submit</button>
