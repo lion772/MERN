@@ -1,17 +1,18 @@
-import React, { ChangeEvent, FC, useReducer } from "react";
+import React, { ChangeEvent, FC, useEffect, useReducer } from "react";
 import { validate } from "../../../util/validators";
 import styles from "./Input.module.css";
 
 interface InputProps {
     errorText: string;
     label?: string | undefined;
-    validators: [{ type: string }];
+    validators: any;
     id: string;
     type: string;
     element?: string | undefined;
     placeholder: string;
     rows?: number | undefined;
     initialValue?: string | boolean | undefined;
+    onInput: (id: string, value: any, isValid: boolean) => void;
 }
 
 type State = {
@@ -23,7 +24,7 @@ type State = {
 type Action = {
     type: string;
     val?: string | boolean | undefined;
-    validators?: [{ type: string }] | undefined;
+    validators?: any;
 };
 
 const inputReducer = (state: State, action: Action) => {
@@ -51,6 +52,14 @@ const Input: FC<InputProps> = (props) => {
         isTouched: false,
         isValid: props.initialValue || false,
     });
+
+    const { id, onInput } = props;
+    const { value, isValid } = inputState;
+
+    useEffect(() => {
+        onInput(id, value, isValid);
+    }, [id, isValid, onInput, value]);
+
     const changeHandler = (
         e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
     ) => {
