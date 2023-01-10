@@ -16,6 +16,7 @@ export const VALIDATOR_MAXLENGTH = (val) => ({
     type: VALIDATOR_TYPE_MAXLENGTH,
     val: val,
 });
+
 export const VALIDATOR_MIN = (val) => ({ type: VALIDATOR_TYPE_MIN, val: val });
 export const VALIDATOR_MAX = (val) => ({ type: VALIDATOR_TYPE_MAX, val: val });
 export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });

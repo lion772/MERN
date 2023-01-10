@@ -5,7 +5,7 @@ import styles from "./Input.module.css";
 interface InputProps {
     errorText: string;
     label?: string | undefined;
-    validators: boolean;
+    validators: [{ type: string }];
     id: string;
     type: string;
     element?: string | undefined;
@@ -22,8 +22,8 @@ type State = {
 
 type Action = {
     type: string;
-    val: any;
-    validators: boolean;
+    val?: string | boolean | undefined;
+    validators?: [{ type: string }] | undefined;
 };
 
 const inputReducer = (state: State, action: Action) => {
@@ -60,7 +60,10 @@ const Input: FC<InputProps> = (props) => {
             validators: props.validators,
         });
     };
-    const touchHandler = () => {};
+    const touchHandler = () => {
+        dispatch({ type: "TOUCH" });
+    };
+
     const element =
         props.element === "input" ? (
             <input
@@ -84,12 +87,14 @@ const Input: FC<InputProps> = (props) => {
     return (
         <div
             className={`${styles["form-control"]} ${
-                !inputState.isValid && `${styles["form-control--invalid"]}`
+                !inputState.isValid &&
+                inputState.isTouched &&
+                `${styles["form-control--invalid"]}`
             }`}
         >
             <label htmlFor={props.id}>{props.label}</label>
             <div className={styles["form-control"]}>{element}</div>
-            {!inputState.isValid && props.errorText}
+            {!inputState.isValid && inputState.isTouched && props.errorText}
         </div>
     );
 };

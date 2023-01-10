@@ -2,6 +2,8 @@ import React from "react";
 import Input from "../../shared/components/FormElements/Input/Input";
 import styles from "./NewPlacePage.module.css";
 
+import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
+
 export default function NewPlacePage() {
     const onSubmitHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -15,7 +17,7 @@ export default function NewPlacePage() {
                     label="title"
                     element="input"
                     placeholder="Title"
-                    validators={true}
+                    validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter a valid title."
                 />
                 <Input
@@ -23,7 +25,7 @@ export default function NewPlacePage() {
                     id="description"
                     label="description"
                     placeholder="Description"
-                    validators={false}
+                    validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter a valid description."
                 />
 
@@ -33,7 +35,7 @@ export default function NewPlacePage() {
                     label="address"
                     element="input"
                     placeholder="Address"
-                    validators={true}
+                    validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter a valid address."
                 />
             </>
