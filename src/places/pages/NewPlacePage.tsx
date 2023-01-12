@@ -63,6 +63,7 @@ export default function NewPlacePage() {
     });
     const onSubmitHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
+        console.log(formState.inputs);
     };
 
     const inputHandler = useCallback(
@@ -100,7 +101,7 @@ export default function NewPlacePage() {
                     element="input"
                     type="text"
                     id="address"
-                    label="address"
+                    label="Address"
                     placeholder="Address"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter a valid address."
