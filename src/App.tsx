@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner/LoadingSpinner";
+import UpdatePlacePage from "./places/pages/UpdatePlacePage";
 
 const MainNavigation = React.lazy(
     () => import("./shared/components/Navigation/MainNavigation")
@@ -24,8 +25,15 @@ export default function App() {
                             path={"/:uid/places"}
                             component={UserPlacesPage}
                         />
-                        <Route path={"/places/new"} component={NewPlacePage} />
-                        <Route path="/places/:placeId" />
+                        <Route
+                            path={"/places/new"}
+                            exact
+                            component={NewPlacePage}
+                        />
+                        <Route
+                            path={"/places/:placeId"}
+                            component={UpdatePlacePage}
+                        />
                         <Redirect to={"/"} />
                     </Switch>
                 </main>
