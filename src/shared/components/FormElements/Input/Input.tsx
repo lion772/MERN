@@ -6,10 +6,11 @@ interface InputProps {
     errorText: string;
     label?: string | undefined;
     validators: any;
+    valid?: boolean | undefined;
     id: string;
-    type: string;
+    type?: string | undefined;
     element?: string | undefined;
-    placeholder: string;
+    placeholder?: string | undefined;
     rows?: number | undefined;
     initialValue?: string | boolean | undefined;
     onInput: (id: string, value: any, isValid: boolean) => void;
@@ -35,12 +36,12 @@ const inputReducer = (state: State, action: Action) => {
                 value: action.val,
                 isValid: validate(action.val, action.validators),
             };
-        case "TOUCH": {
+        case "TOUCH":
             return {
                 ...state,
                 isTouched: true,
             };
-        }
+
         default:
             return state;
     }
@@ -50,7 +51,7 @@ const Input: FC<InputProps> = (props) => {
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: props.initialValue || "",
         isTouched: false,
-        isValid: props.initialValue || false,
+        isValid: props.valid || false,
     });
 
     const { id, onInput } = props;
