@@ -6,7 +6,7 @@ interface InputProps {
     errorText: string;
     label?: string | undefined;
     validators: any;
-    valid?: boolean | undefined;
+    initialValid?: boolean | undefined;
     id: string;
     type?: string | undefined;
     element?: string | undefined;
@@ -51,7 +51,7 @@ const Input: FC<InputProps> = (props) => {
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: props.initialValue || "",
         isTouched: false,
-        isValid: props.valid || false,
+        isValid: props.initialValid || false,
     });
 
     const { id, onInput } = props;
