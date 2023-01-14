@@ -1,10 +1,4 @@
-import React, {
-    CSSProperties,
-    FC,
-    useCallback,
-    useEffect,
-    useRef,
-} from "react";
+import React, { useEffect, useRef } from "react";
 
 import "./Map.css";
 
@@ -32,7 +26,7 @@ const Map = (props) => {
             });
         }
         reloadCounter !== 1 && reloadCounter++;
-    }, [center, zoom]);
+    }, [center, reloadCounter, zoom]);
 
     return (
         <div
