@@ -59,19 +59,22 @@ const UpdatePlacePage = () => {
     const identifiedPlace = DUMMY_PLACES.find((p) => p.id === placeId);
 
     useEffect(() => {
-        setFormData(
-            {
-                title: {
-                    value: identifiedPlace?.title,
-                    isValid: true,
+        if (identifiedPlace) {
+            setFormData(
+                {
+                    title: {
+                        value: identifiedPlace?.title,
+                        isValid: true,
+                    },
+                    description: {
+                        value: identifiedPlace?.description,
+                        isValid: true,
+                    },
                 },
-                description: {
-                    value: identifiedPlace?.description,
-                    isValid: true,
-                },
-            },
-            true
-        );
+                true
+            );
+        }
+
         setIsLoading(false);
     }, [identifiedPlace, setFormData]);
 

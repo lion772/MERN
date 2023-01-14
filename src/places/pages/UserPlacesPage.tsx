@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Button from "../../shared/components/UIElements/Button/Button";
 import Card from "../../shared/components/UIElements/Card";
 import PlacesList from "../components/PlacesList";
 
@@ -45,7 +46,7 @@ export default function UserPlacesPage() {
                     <h2>
                         No list to display. Don't you want to create a place?
                     </h2>
-                    <button>Share Place</button>
+                    <Button>Share Place</Button>
                 </Card>
             </div>
         );
