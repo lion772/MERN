@@ -1,9 +1,10 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useCallback, useState } from "react";
 import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner/LoadingSpinner";
 import UpdatePlacePage from "./places/pages/UpdatePlacePage";
 import AuthPage from "./user/pages/Auth";
+import { AuthContext } from "./shared/context/auth-context";
 
 const MainNavigation = React.lazy(
     () => import("./shared/components/Navigation/MainNavigation")
@@ -15,8 +16,18 @@ const UserPlacesPage = React.lazy(
 const NewPlacePage = React.lazy(() => import("./places/pages/NewPlacePage"));
 
 export default function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const login = useCallback(() => {
+        setIsLoggedIn(true);
+    }, []);
+
+    const logout = useCallback(() => {
+        setIsLoggedIn(false);
+    }, []);
+
     return (
-        <>
+        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
             <Suspense fallback={<LoadingSpinner />}>
                 <MainNavigation />
                 <main>
@@ -40,6 +51,6 @@ export default function App() {
                     </Switch>
                 </main>
             </Suspense>
-        </>
+        </AuthContext.Provider>
     );
 }
