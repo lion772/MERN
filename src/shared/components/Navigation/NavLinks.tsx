@@ -58,9 +58,11 @@ const NavLinks: FC<NavLinksProps> = () => {
                 </li>
             )}
 
-            {/*  <li>
-                <button>Log in</button>
-            </li> */}
+            {authCtx.isLoggedIn && (
+                <li>
+                    <button onClick={authCtx.logout}>Log out</button>
+                </li>
+            )}
         </ul>
     );
 };
