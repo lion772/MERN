@@ -3,6 +3,7 @@ import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner/LoadingSpinner";
 import UpdatePlacePage from "./places/pages/UpdatePlacePage";
+import AuthPage from "./user/pages/Auth";
 
 const MainNavigation = React.lazy(
     () => import("./shared/components/Navigation/MainNavigation")
@@ -34,6 +35,7 @@ export default function App() {
                             path={"/places/:placeId"}
                             component={UpdatePlacePage}
                         />
+                        <Route path={"/auth"} component={AuthPage} />
                         <Redirect to={"/"} />
                     </Switch>
                 </main>
