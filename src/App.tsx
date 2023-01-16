@@ -26,30 +26,34 @@ export default function App() {
         setIsLoggedIn(false);
     }, []);
 
+    let routes;
+
+    if (isLoggedIn) {
+        routes = (
+            <Switch>
+                <Route path={"/"} exact component={UsersPage} />
+                <Route path={"/:uid/places"} component={UserPlacesPage} />
+                <Route path={"/places/new"} exact component={NewPlacePage} />
+                <Route path={"/places/:placeId"} component={UpdatePlacePage} />
+                <Redirect to={"/"} />
+            </Switch>
+        );
+    } else {
+        routes = (
+            <Switch>
+                <Route path={"/"} exact component={UsersPage} />
+                <Route path={"/:uid/places"} component={UserPlacesPage} />
+                <Route path={"/auth"} component={AuthPage} />
+                <Redirect to={"/auth"} />
+            </Switch>
+        );
+    }
+
     return (
         <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
             <Suspense fallback={<LoadingSpinner />}>
                 <MainNavigation />
-                <main>
-                    <Switch>
-                        <Route path={"/"} exact component={UsersPage} />
-                        <Route
-                            path={"/:uid/places"}
-                            component={UserPlacesPage}
-                        />
-                        <Route
-                            path={"/places/new"}
-                            exact
-                            component={NewPlacePage}
-                        />
-                        <Route
-                            path={"/places/:placeId"}
-                            component={UpdatePlacePage}
-                        />
-                        <Route path={"/auth"} component={AuthPage} />
-                        <Redirect to={"/"} />
-                    </Switch>
-                </main>
+                <main>{routes}</main>
             </Suspense>
         </AuthContext.Provider>
     );

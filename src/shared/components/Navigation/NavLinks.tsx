@@ -58,9 +58,9 @@ const NavLinks: FC<NavLinksProps> = () => {
                 </li>
             )}
 
-            <li>
+            {/*  <li>
                 <button>Log in</button>
-            </li>
+            </li> */}
         </ul>
     );
 };

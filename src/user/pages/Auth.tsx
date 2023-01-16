@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import Input from "../../shared/components/FormElements/Input/Input";
 import Button from "../../shared/components/UIElements/Button/Button";
 import Card from "../../shared/components/UIElements/Card";
+import { AuthContext } from "../../shared/context/auth-context";
 import { useForm } from "../../shared/hooks/form-hook";
 import {
     VALIDATOR_EMAIL,
@@ -12,7 +13,7 @@ import {
 import "./Auth.css";
 
 const AuthPage = () => {
-    //const auth = useContext(AuthContext);
+    const authCtx = useContext(AuthContext);
 
     const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -32,6 +33,8 @@ const AuthPage = () => {
 
     const authSubmitHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
+        console.log(formState.inputs);
+        authCtx.login();
     };
 
     const switchModeHandler = () => {
