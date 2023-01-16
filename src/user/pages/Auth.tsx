@@ -34,6 +34,31 @@ const AuthPage = () => {
         e.preventDefault();
     };
 
+    const switchModeHandler = () => {
+        if (!isLoginMode) {
+            setFormData(
+                {
+                    ...formState.inputs,
+                    name: undefined,
+                },
+                formState.inputs.email.isValid &&
+                    formState.inputs.password.isValid
+            );
+        } else {
+            setFormData(
+                {
+                    ...formState.inputs,
+                    name: {
+                        value: "",
+                        isValid: false,
+                    },
+                },
+                false
+            );
+        }
+        setIsLoginMode((prevMode) => !prevMode);
+    };
+
     return (
         <Card className="authentication">
             <h2>Login Required</h2>
@@ -72,6 +97,9 @@ const AuthPage = () => {
                     {isLoginMode ? "LOGIN" : "SIGNUP"}
                 </Button>
             </form>
+            <Button inverse onClick={switchModeHandler}>
+                SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}
+            </Button>
         </Card>
     );
 };
